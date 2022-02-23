@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { TextField, Typography, Button, Paper } from "@material-ui/core";
 import useStyles from "./styles";
 import FileBase from "react-file-base64";
+import { useDispatch } from "react-redux";
+import { createPost } from "../../actions/posts";
 
 const Form = () => {
   const [postData, setPostData] = useState({
@@ -12,8 +14,13 @@ const Form = () => {
     selectedFile: "",
   });
   const classes = useStyles();
+  const dispatch = useDispatch();
 
-  const handleSubmit = () => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    dispatch(createPost(postData));
+  };
 
   const clear = () => {};
 
@@ -45,7 +52,7 @@ const Form = () => {
           value={postData.title}
           onChange={(e) =>
             //spreads in the change that way the text field is not over written every time there is a submission
-            setPostData({ ...postData, tile: e.target.value })
+            setPostData({ ...postData, title: e.target.value })
           }
         />
         <TextField
