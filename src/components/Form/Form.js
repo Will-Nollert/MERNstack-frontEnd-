@@ -98,7 +98,7 @@ const Form = ({ currentId, setCurrentId }) => {
           value={postData.tags}
           onChange={(e) =>
             //spreads in the change that way the text field is not over written every time there is a submission
-            setPostData({ ...postData, tags: e.target.value })
+            setPostData({ ...postData, tags: e.target.value.split(",") })
           }
         />
         <div className={classes.fileInput}>
